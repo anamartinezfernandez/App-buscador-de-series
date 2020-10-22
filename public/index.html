@@ -7,22 +7,31 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
-
   <body>
-    <div class="page">
-      <header class="page__header">
-       
-      </header>
+    <header class="page__header">
+      <h1 class= header__title>Buscador de series</h1>
+    </header>
 
-      <main class="page__main">
+    <main class="page__main">
+     <section class="">
+        <div class="form__container"></div>
+          <form class= "form" action= "/signup" method="post">
+            <label for="searchInput"></label>
+            <input class="js-searchInput form__search--input" type="text" id="searchInput" placeholder="La casa de papel"/>
+            <label for="searchBtn"></label>
+            <input class= "js-searchBtn form__search--btn" type="submit" id= "searchBtn" value= "Search"/>
+          </form>
+        <div class="list__container">
+          <ul class="filmlist js-filmList">
+          </ul>
+        </div>
+      </section>
+      <aside>
+        <h2 class="aside__title">Mis series favoritas</h2>
+        <ul class="favouritesList js-favouritesList"></ul>
+      </aside>
+    </main>
 
-      </main>
-
-      <footer class="page__footer">
-       
-      </footer>
-
-    </div>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
