@@ -3,9 +3,10 @@
 //DECLARACIÓN DE VARIABLES GLOBALES
 const btnSearch = document.querySelector (".js-searchBtn");
 const inputSearch = document.querySelector (".js-searchInput");
-const filmList = document.querySelector (".js-filmList");
+const serieList = document.querySelector (".js-serieList");
+const favouriteSerieList  = document.querySelector (".js-favouriteSerieList");
 
-let filmsArrow = [];
+let seriesArrow = [];
 let favouriteList = [];
 
 
@@ -22,47 +23,47 @@ function connectToApi(){
   })
   .then (function (data){
     console.log(data);
-    filmsArrow = data; //me faltaba esto
+    seriesArrow = data; //me faltaba esto
     paintCard();
     listenCard();
    /*  setLocalStorage(); */
   })
 }
 
-//PINTAR TARJETAS DE PELÍCULAS
+//PINTAR TARJETAS DE SERIES
 
 const paintCard = function(){
   console.log ("entro en paintcard");
-  let filmHtml = "";
-  console.log (filmHtml);
+  let serieHtml = "";
+  console.log (serieHtml);
 
-  for (let i=0; i < filmsArrow.length; i++){
+  for (let i=0; i < seriesArrow.length; i++){
     console.log (i);
-    filmHtml += `<li class= "filmElement js-filmElement" id ="${i}">`;
-    console.log(filmsArrow[i].show);
-    const films = filmsArrow[i].show;
-    console.log (films);
-    console.log (films.name);
+    serieHtml += `<li class= "serieElement js-serieElement" id ="${i}">`;
+    console.log(seriesArrow[i].show);
+    const series = seriesArrow[i].show;
+    console.log (series);
+    console.log (series.name);
   
-    if (films.image === null){
-      filmHtml += `<img alt="foto carátula ${films.name}" name= "foto ${films.name}" src="https://via.placeholder.com/210x295/B695C0/525252/?text=tv">`;
+    if (series.image === null){
+      serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="https://via.placeholder.com/210x295/B695C0/525252/?text=tv">`;
     }
     else {
       
-      filmHtml += `<img alt="foto carátula ${films.name}" name= "foto ${films.name}" src="${films.image.medium}" >`;
+      serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="${series.image.medium}" >`;
     }
-    filmHtml += `<h3 class= "filmTitle">${films.name}</h3>`;
-    filmHtml += "</li>"
+    serieHtml += `<h3 class= "serieTitle">${series.name}</h3>`;
+    serieHtml += "</li>"
   }
-  filmList.innerHTML = filmHtml;
-  console.log (filmList);
+  serieList.innerHTML = serieHtml;
+  console.log (serieList);
 }
 
 //ESCUCHAR TARJETAS DE VISITA
 
 function listenCard(){
   console.log ("entro en función listenCard");
-  const cardElements = document.querySelectorAll(".js-filmElement");
+  const cardElements = document.querySelectorAll(".js-serieElement");
   console.log (cardElements);
   for (let cardElement of cardElements) {
     cardElement.addEventListener('click', favouriteSeries);
@@ -70,7 +71,7 @@ function listenCard(){
   }
 }
 
-//MARCAR COMO FAVORITAS LAS SERIRES SELECCIONADAS POR LA USUARIA (poner escuchador de eventos)
+//MARCAR COMO FAVORITAS LAS SERIES SELECCIONADAS POR LA USUARIA (poner escuchador de eventos)
 
 const favouriteSeries = function(event){
 //la escuchamos más arriba en la función listenCard
@@ -83,6 +84,7 @@ const favouriteSeries = function(event){
   const favouriteClickedId = parseInt(event.currentTarget.id); 
   console.log (favouriteClickedId );
   const findFavourite = favouriteList.indexOf(favouriteClickedId);
+  
 
   //Guardo los favoritos en un array let favouriteList = [];
     //esto significa que no está dentro del array
@@ -90,6 +92,8 @@ const favouriteSeries = function(event){
     favouriteList.push(favouriteClickedId);
     console.log (favouriteList);
     favouriteClicked.classList.add ("favouriteSerie");
+    //pensar si hay que poner un remove
+    paintFavourites();
 
   } else {
     favouriteList.splice (findFavourite, 1); 
@@ -98,22 +102,19 @@ const favouriteSeries = function(event){
   }
 /* paintCard();
 listenCard(); */
-
-  // Busco el favorito en el array favouriteList:
-/*   console.log (cardElement);
-
-  const isFavourite = favouriteList.find (cardElement => cardElement.img.id === clicked); 
-  console.log(isFavourite); */
-
-  //le añado la clase de favoritos. se la damos desde css al js
-  //le quito la clase de favoritos
-
-
 }
 
 
+//PINTAR FAVORITAS EN ASIDE:
+
+const paintFavourites = function(){
+  favouriteSerieList.innerHTML += `${favouriteClicked}`;
+}
 
 
+    //Hay que mostrar un listado en la parte izquierda de la pantalla, debajo del formulario de búsqueda, con
+/* las series favoritas. Os recomendamos crear un variable o constante de tipo array en JS para almacenar las series favoritas.
+Las series favoritas deben seguir apareciendo a la izquierda aunque la usuaria realice otra búsqueda. */
 
 
 
@@ -144,4 +145,5 @@ favouriteSeries.addEventListener ("keyup", setLocalStorage); //aquí mirar el el
 btnSearch.addEventListener ("click", connectToApi);
 
 
+/* README */
 //# sourceMappingURL=main.js.map

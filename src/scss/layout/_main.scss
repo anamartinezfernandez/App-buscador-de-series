@@ -1,4 +1,4 @@
-.filmList {
+.serieList {
   display: flex;
   background-color: white;
   justify-content: space-between;
@@ -9,7 +9,7 @@
 
 }
 
-.filmElement {
+.serieElement {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,7 +20,7 @@
   color: black;
 } 
 
-.filmTitle {
+.serieTitle {
   
   text-align: center;
   height: 60px;
