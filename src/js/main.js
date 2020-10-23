@@ -6,14 +6,14 @@ const inputSearch = document.querySelector (".js-searchInput");
 const serieList = document.querySelector (".js-serieList");
 const favouriteSerieList  = document.querySelector (".js-favouriteSerieList");
 
-let seriesArrow = [];
+let seriesArrow = []; 
 let favouriteList = [];
 
 
 //CONECTAR CON EL SERVIDOR API cuando la usuaria hace click
 
 
-function connectToApi(){
+function connectToApi(event){
   const inputSearchValue = inputSearch.value;
   //console.log ("entro");
   fetch (`http://api.tvmaze.com/search/shows?q=${inputSearchValue}`)
@@ -26,8 +26,10 @@ function connectToApi(){
     seriesArrow = data; //me faltaba esto
     paintCard();
     listenCard();
+    /* paintFavourites(); */ //DUDA
    /*  setLocalStorage(); */
   })
+event.preventDefault();
 }
 
 //PINTAR TARJETAS DE SERIES
@@ -39,11 +41,14 @@ const paintCard = function(){
 
   for (let i=0; i < seriesArrow.length; i++){
     console.log (i);
-    serieHtml += `<li class= "serieElement js-serieElement" id ="${i}">`;
+  
     console.log(seriesArrow[i].show);
     const series = seriesArrow[i].show;
     console.log (series);
     console.log (series.name);
+    console.log (seriesArrow);
+    console.log (series.id);
+    serieHtml += `<li class= "serieElement js-serieElement" id ="${series.id}">`;
   
     if (series.image === null){
       serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="https://via.placeholder.com/210x295/B695C0/525252/?text=tv">`;
@@ -71,6 +76,17 @@ function listenCard(){
   }
 }
 
+//RELACIONAR ID FAVORITOS CON ARRAY 
+
+const getObject = function(id){
+  console.log ("entro en getobject");
+  console.log (seriesArrow);
+  console.log(seriesArrow.find(serieArrow => serieArrow.show.id === 41531));
+ 
+  return seriesArrow.find(serieArrow => serieArrow.show.id === parseInt(id));
+
+}
+
 //MARCAR COMO FAVORITAS LAS SERIES SELECCIONADAS POR LA USUARIA (poner escuchador de eventos)
 
 const favouriteSeries = function(event){
@@ -82,18 +98,21 @@ const favouriteSeries = function(event){
   const favouriteClicked = event.currentTarget;
   console.log(favouriteClicked);
   const favouriteClickedId = parseInt(event.currentTarget.id); 
-  console.log (favouriteClickedId );
+  console.log (favouriteClickedId);
+  const object = getObject(favouriteClickedId);
+  console.log(object);
   const findFavourite = favouriteList.indexOf(favouriteClickedId);
   
 
   //Guardo los favoritos en un array let favouriteList = [];
     //esto significa que no está dentro del array
   if (findFavourite === -1){
-    favouriteList.push(favouriteClickedId);
+    favouriteList.push(favouriteClickedId); //¡¡¡dar una vuelta a lo que añadir aquí!!!1 Habría que relacionar de alguna forma el id de favoritos con el array de objetos 
     console.log (favouriteList);
     favouriteClicked.classList.add ("favouriteSerie");
     //pensar si hay que poner un remove
-    paintFavourites();
+    favouriteSerieList.innerHTML +=  `${object.show.name} ${object.show.url} `; //AQUÍ HAY QUE HACER QUE APAREZCA TOOOODO
+  /*   paintFavourites(); */
 
   } else {
     favouriteList.splice (findFavourite, 1); 
@@ -107,9 +126,10 @@ listenCard(); */
 
 //PINTAR FAVORITAS EN ASIDE:
 
-const paintFavourites = function(){
-  favouriteSerieList.innerHTML += `${favouriteClicked}`;
-}
+/* const paintFavourites = function(){
+  favouriteList.innerHTML =  `${object}`;
+  
+} */
 
 
     //Hay que mostrar un listado en la parte izquierda de la pantalla, debajo del formulario de búsqueda, con
