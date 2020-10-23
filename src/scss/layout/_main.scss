@@ -1,9 +1,32 @@
 .filmList {
   display: flex;
-  flex-direction: row;
-  background-color: violet;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+
+
 }
 
 .filmElement {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-decoration: none;
+  width: 240px;
+  background-color: violet;
+  border: solid 2px black;
+  color: black;
 } 
+
+.filmTitle {
+  
+  text-align: center;
+  height: 60px;
+}
+
+.favouriteSerie {
+  background-color: aqua;
+  color: blue;
+}
