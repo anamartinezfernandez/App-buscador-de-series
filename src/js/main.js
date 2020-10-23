@@ -6,8 +6,9 @@ const inputSearch = document.querySelector (".js-searchInput");
 const filmList = document.querySelector (".js-filmList");
 
 let filmsArrow = [];
+let favouriteSeries = [];
 
-//CONECTAR CON EL SERVIDOR API
+//CONECTAR CON EL SERVIDOR API cuando la usuaria hace click
 
 
 function connectToApi(){
@@ -22,6 +23,8 @@ function connectToApi(){
     console.log(data);
     filmsArrow = data; //me faltaba esto
     paintCard();
+    listenCard();
+   /*  setLocalStorage(); */
   })
 }
 
@@ -33,7 +36,7 @@ const paintCard = function(){
   console.log (filmHtml);
 
   for (let i=0; i < filmsArrow.length; i++){
-    filmHtml += "<li class= filmElement>";
+    filmHtml += `<li class= "filmElement js-filmElement">`;
     console.log(filmsArrow[i].show);
     const films = filmsArrow[i].show;
     console.log (films);
@@ -51,6 +54,59 @@ const paintCard = function(){
   filmList.innerHTML = filmHtml;
   console.log (filmList);
 }
+
+//ESCUCHAR TARJETAS DE VISITA
+
+function listenCard(){
+  console.log ("entro en funcióin listenCard");
+  const cardElements = document.querySelectorAll(".js-filmElement");
+  console.log (cardElements);
+  for (const cardElement of cardElements) {
+    cardElement.addEventListener('click', favouritesFilms);
+    console.log (cardElement);
+  }
+}
+
+//MARCAR COMO FAVORITAS LAS SERIRES SELECCIONADAS POR LA USUARIA (poner escuchador de eventos)
+
+const favouritesFilms = function(event){
+//la escuchamos más arriba en la función listenCard
+  console.log ("entro en función FavouriteFillms");
+  console.log (event); //targetCurrent es null y target es la imagen
+  /* const clicked = event.targetCurrent; */
+}
+
+
+
+
+
+
+
+
+
+
+//LOCAL STORAGE
+
+//2.1. Diagrama de flujo cuando la usuaria hace un evento.
+
+/* function setLocalStorage(){
+  localStorage.setItem ("textinStorage", favouriteSeries);
+  const stringFavouriteSeries = JSON.stringify (favouriteSeries);
+  }; */
+  
+//2.2. Diagrama de flujo al arrancar la página.
+
+  /* function getFromLocalStorage(){
+  const stringFavouriteStorage = localStorage.getItem ("textinStorage");
+  const favouriteStorage = JSON.parse (stringFavouriteStorage);
+
+  if (favouriteStorage !== null) {
+ //aquí falta
+  }
+};
+
+
+favouriteSeries.addEventListener ("keyup", setLocalStorage); //aquí mirar el elemento sobre el que se pone el escuchador */
 
 btnSearch.addEventListener ("click", connectToApi);
 
