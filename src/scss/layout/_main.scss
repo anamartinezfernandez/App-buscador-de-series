@@ -1,32 +1,63 @@
+
+
+.page__main{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+
+}
+
+.form {
+  margin-left: 40px;
+
+}
 .serieList {
   display: flex;
   background-color: white;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-
-
-
 }
 
 .serieElement {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
+  margin: 20px;
   text-decoration: none;
   width: 240px;
-  background-color: violet;
-  border: solid 2px black;
+  height: 390px;
+  background-color: rgb(173, 135, 173);
   color: black;
 } 
 
 .serieTitle {
-  
+  margin-top: 15px;
   text-align: center;
   height: 60px;
 }
 
-.favouriteSerie {
-  background-color: aqua;
+
+
+.favouriteSeries{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px;
+  text-decoration: none;
+  width: 240px;
+  height: 390px;
+  background-color: rgb(78, 194, 165);
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+.classFavourite {
+  background-color: rgb(164, 209, 209);
   color: blue;
 }

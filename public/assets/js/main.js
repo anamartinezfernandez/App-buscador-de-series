@@ -1,7 +1,10 @@
 'use strict';
 
-//DECLARACIÓN DE VARIABLES GLOBALES
+
+//------------------------------DECLARACIÓN DE VARIABLES GLOBALES------------------------------------------
+
 const btnSearch = document.querySelector (".js-searchBtn");
+const form = document.querySelector (".js-form");
 const inputSearch = document.querySelector (".js-searchInput");
 const serieList = document.querySelector (".js-serieList");
 const favouriteSerieList  = document.querySelector (".js-favouriteSerieList");
@@ -10,10 +13,22 @@ let seriesArrow = [];
 let favouriteListArrow = [];
 
 
-//CONECTAR CON EL SERVIDOR API cuando la usuaria hace click
+//------------------------------PREVENT DEFAULT------------------------------
+
+function handleForm(event){
+  event.preventDefault();
+}
+form.addEventListener("submit", handleForm);
+
+//------------------------------CONECTAR CON EL SERVIDOR API cuando la usuaria hace click------------------------------
+
+function handlerEvent(){
+  seriesArrow =  [];
+  connectToApi();
+}
 
 
-function connectToApi(event){
+function connectToApi(){
   const inputSearchValue = inputSearch.value;
   console.log ("entro");
   fetch (`http://api.tvmaze.com/search/shows?q=${inputSearchValue}`)
@@ -27,12 +42,14 @@ function connectToApi(event){
     paintCard();
     listenCard();
     /* paintFavourites(); */ //DUDA
-   /*  setLocalStorage(); */
+    //setLocalStorage();  //DUDA
   })
-event.preventDefault();
+
 }
 
-//PINTAR TARJETAS DE SERIES
+btnSearch.addEventListener ("click", connectToApi);
+
+//------------------------------------PINTAR TARJETAS DE SERIES---------------------------
 
 const paintCard = function(){
   //console.log ("entro en paintcard");
@@ -83,8 +100,7 @@ const getObject = function(id){
   console.log ("entro en getobject");
   console.log (seriesArrow);
   console.log (favouriteListArrow);
-  console.log (seriesArrow.find(serieArrow => serieArrow.show.id === 41531));
-  console.log (seriesArrow.find(serieArrow => serieArrow.show.id === parseInt(id)));
+
  
   return seriesArrow.find(serieArrow => serieArrow.show.id === parseInt(id));
 
@@ -107,9 +123,7 @@ const favouriteSeries = function(event){
   
   //const findFavourite = favouriteListArrow.indexOf(favouriteClickedId);
   //console.log (findFavourite);
-  
 
-  
   //Guardo los favoritos en un array let favouriteListArrow = [];
   const findFavourite = favouriteListArrow.indexOf(object);
   console.log (findFavourite);
@@ -119,10 +133,12 @@ const favouriteSeries = function(event){
     favouriteListArrow.push(object); //¡¡¡dar una vuelta a lo que añadir aquí!!!1 Habría que relacionar de alguna forma el id de favoritos con el array de objetos 
     console.log(object);
     console.log (favouriteListArrow);
-    favouriteClicked.classList.add ("favouriteSerie");
+    console.log(favouriteClicked);
+    console.log(favouriteClicked.classList.add ("classFavourite"));
+  
     //pensar si hay que poner un remove
-    paintFavourites(); 
 
+    
   } else {
     const findFavouriteLength = favouriteListArrow +1;
     favouriteListArrow.splice(findFavouriteLength, 0); 
@@ -130,8 +146,12 @@ const favouriteSeries = function(event){
     
     console.log (favouriteListArrow);
   }
-}
+/*   paintFavourites(); 
+  paintCard();
+  listenCard();
+  setLocalStorage(); */
 
+}
 
 
 //PINTAR FAVORITAS EN ASIDE:
@@ -139,7 +159,7 @@ const favouriteSeries = function(event){
 const paintFavourites = function(){
   let favouriteSerieHtml = "";
   for (const favouriteObject of favouriteListArrow){
-    favouriteSerieHtml += "<li>";
+    favouriteSerieHtml += `<li class= "favouriteSeries">`;
     if (favouriteObject.show.image === null){
       favouriteSerieHtml += `<img alt="foto carátula ${favouriteObject.show.name}" name= "foto ${favouriteObject.show.name}" src="https://via.placeholder.com/210x295/B695C0/525252/?text=tv">`;
     }
@@ -154,8 +174,33 @@ const paintFavourites = function(){
 
 }
 
+//LOCAL STORAGE
+
+//2.1. Diagrama de flujo cuando la usuaria hace un evento.
+
+function setLocalStorage(){
+  localStorage.setItem ("favourites", JSON.stringify(favouriteListArrow));
+};
+
+//2.2. Diagrama de flujo al arrancar la página.
+
+function getFromLocalStorage(){
+  const favouriteStorage = JSON.parse(localStorage.getItem("favourites"));
+  if(favouriteStorage !== null){
+    favouriteListArrow = favouriteStorage; 
+    paintFavourites();
+    listenCard();
+  }
+  else{
+  handlerEvent();
+  } 
+};
+getFromLocalStorage(); 
 
 
-btnSearch.addEventListener ("click", connectToApi);
+
+
+
+
 
 //# sourceMappingURL=main.js.map

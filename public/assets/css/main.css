@@ -7,10 +7,24 @@ body {
   padding: 2rem;
   height: 100vh; }
 
+.page__header {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px; }
+
+.page__main {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse; }
+
+.form {
+  margin-left: 40px; }
+
 .serieList {
   display: flex;
   background-color: white;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap; }
 
@@ -18,18 +32,36 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
+  margin: 20px;
   text-decoration: none;
   width: 240px;
-  background-color: violet;
-  border: solid 2px black;
+  height: 390px;
+  background-color: #ad87ad;
   color: black; }
 
 .serieTitle {
+  margin-top: 15px;
   text-align: center;
   height: 60px; }
 
-.favouriteSerie {
-  background-color: aqua;
+.favouriteSeries {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px;
+  text-decoration: none;
+  width: 240px;
+  height: 390px;
+  background-color: #4ec2a5;
+  color: black; }
+
+.hidden {
+  display: none; }
+
+.classFavourite {
+  background-color: #a4d1d1;
   color: blue; }
 
 .main__list {

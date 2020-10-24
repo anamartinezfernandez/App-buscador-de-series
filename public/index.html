@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Buscador de series</title>
+    <title>Buscador de series </title>
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
@@ -13,19 +14,18 @@
     </header>
 
     <main class="page__main">
-     <section class="">
-        <div class="form__container"></div>
-          <form class= "form">
-            <label for="searchInput"></label>
-            <input class="js-searchInput form__search--input" type="text" id="searchInput" value="" placeholder="La casa de papel"/>
-            <button class= "js-searchBtn form__search--btn"type="submit" >Search</button>
-          </form>
+      <section class="searcher">
+        <form class= "js-form form">
+          <label for="searchInput"></label>
+          <input class="js-searchInput form__search--input" type="text" id="searchInput" value="" placeholder="La casa de papel"/>
+          <button class= "js-searchBtn form__search--btn" type="submit" >Search</button>
+        </form>
         <div class=" list__container">
           <ul class="serieList js-serieList">
           </ul>
         </div>
       </section>
-      <aside>
+      <aside class= "aside">
         <h2 class="aside__title">Mis series favoritas</h2>
         <ul class="favouriteSerieList js-favouriteSerieList"></ul>
       </aside>

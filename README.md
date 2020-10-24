@@ -16,10 +16,14 @@
   - [x] Añadir la clase de favorito (la traemos de css) para intercambiar color de fondo y fuente
   - [x] Pintar tarjetas de favoritos: Mostrar un listado de las series favoritas.
   - [x] Si vuelve a pinchar en la misma tarjeta no queremos que se añada al array (y por lo tanto tampoco a la lista)
-  - [ ] Con css que aparezca en la parte izquierda y hidden
+  - [ ] Con css que aparezca en la parte izquierda y hidden (clase ya creada en css)
   - [x] Mantener las series favoritas aunque la usuaria realice otra búsqueda. ASEGURARSE DE POR QUÉ APARECE ASÍ
 
 - [] Localstorage: al recargar la página los favoritos deben de seguir mostrándose
+  - [x] Guardar array de favoritos en localStorage
+    - [x] Transformar array a cadena de caracteres (JSON.stringify)
+  - [x] Recuperar los datos guardados
+    - [x] Transformar cadena de caracteres a array (JSON.parse)
 
 - [] Bonus: borrar favoritos
 
