@@ -7,6 +7,9 @@ const serieList = document.querySelector(".js-serieList");
 const favouriteSerieList = document.querySelector(".js-favouriteSerieList");
 const favouriteSection = document.querySelector(".js-aside");
 
+const btnRemove = document.querySelector(".js-btnRemove");
+
+
 let seriesResultArrow = [];
 let favouriteListArrow = [];
 
@@ -21,7 +24,7 @@ form.addEventListener("submit", handlerForm);
 
 
 function handlerEvent() {
-  seriesResultArrow = [];  //AQUÍ QUÉ!!!!! ¿HABRÍA QUE QUITARLO?
+  seriesResultArrow = []; 
   connectToApi();
 }
 
@@ -143,14 +146,14 @@ const favouriteSeries = function (event) {
   } else {
     const findFavouriteLength = favouriteListArrow + 1;
     favouriteListArrow.splice(findFavouriteLength, 0);
-    console.log(favouriteClicked.classList.remove("classFavourite")); //aquí tenemos que quitar también de la parte de favoritos si se clicka
+    console.log(favouriteClicked.classList.remove("classFavourite")); 
+    
     //Aquí lo que queremos es que si ya está en el array no se vuelva a añadir si se clicka. Por lo que usamos el método splice. El primer parámetro sería el índice a partir del cual queremos añadir elementos y el segundo el número de elementos que queremos añadir a partir de la posición dada. Para ello creamos una nueva variable (que cogeremos como primer parámetro) y que será la longitud del array +1. En el segundo parámetro le diremos que no queremos que nos añada nada más.
 
     console.log(favouriteListArrow);
   }
   
-  //paintCard();
-  //listenCard(); esto no estoy segura
+ 
   setLocalStorage();
 };
 
@@ -168,20 +171,57 @@ const paintFavourites = function () {
       favouriteSerieHtml += `<img class= "favouriteSeriesImg"alt="foto carátula ${favouriteObject.show.name}" name= "foto ${favouriteObject.show.name}" src="${favouriteObject.show.image.medium}" >`;
     }
     favouriteSerieHtml += `<h3 class = "favouriteSeriesTitle">${favouriteObject.show.name}</h3>`;
-    favouriteSerieHtml += `<button  class= "btnRemove" type="button"> X </button>`
+    favouriteSerieHtml += `<button  class= "js-btnRemove btnRemove" type="button" id= ${favouriteObject.show.id}> X </button>`
     favouriteSerieHtml += "</li>";
+   
   }
-  favouriteSerieList.innerHTML = favouriteSerieHtml;
+ favouriteSerieList.innerHTML = favouriteSerieHtml;
+  listenRemoveBtn(); 
 };
 
 
 
 
-//-------------------Remove as favourite serie cards which X icon is clicked by user-------------------
+//-------------------Listener of remove buttons when are clicked-------------------
+
+
 
 const listenRemoveBtn = function(){
+  console.log ("entro en función listenerremove");
   
+  const btnsRemove = document.querySelectorAll(".js-btnRemove");
+  console.log(btnsRemove);
+  for (let btnRemove of btnsRemove) {
+    btnRemove.addEventListener ("click", removeFavouriteSeries);
+    console.log(btnRemove);
+  }
 }
+
+
+//-------------------Remove as favourite serie cards which X button is clicked by user-------------------
+
+
+
+const removeFavouriteSeries = function(event){
+  const  btnClicked = event.currentTarget;
+  console.log(btnClicked);
+  console.log("entro en función removeFavouriteSeries");
+  const btnClickedId = parseInt (event.currentTarget.id);
+  console.log (btnClickedId);
+  for (const favouriteArrow of favouriteListArrow){
+    console.log (favouriteArrow);
+    console.log (favouriteArrow.show.id);
+    console.log(favouriteListArrow);
+    if (btnClickedId === parseInt(favouriteArrow.show.id)){
+      favouriteListArrow.splice(0,1);
+      console.log(favouriteListArrow);
+    }
+  }
+  setLocalStorage();
+  paintFavourites();
+}
+
+/* PENDIENTE ELIMINAR LA SECCIÓN DE FAVORITOS AL COMPLETO   */
 //-------------------Set serie cards marked as favourites to user local Storage-------------------
 
 function setLocalStorage() {
@@ -196,9 +236,9 @@ function getFromLocalStorage() {
     favouriteListArrow = favouriteStorage;
     favouriteSection.classList.remove("hidden");
     paintFavourites();
-   /*  listenCard();  */ 
   } else {
     favouriteSection.classList.add("hidden");
+    console.log(favouriteSection.classList.add("hidden"));
     return favouriteListArrow = [];
     
 

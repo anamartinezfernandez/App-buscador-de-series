@@ -12,9 +12,9 @@ function getFromLocalStorage() {
     favouriteListArrow = favouriteStorage;
     favouriteSection.classList.remove("hidden");
     paintFavourites();
-   /*  listenCard();  */ 
   } else {
     favouriteSection.classList.add("hidden");
+    console.log(favouriteSection.classList.add("hidden"));
     return favouriteListArrow = [];
     
 

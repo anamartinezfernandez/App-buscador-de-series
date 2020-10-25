@@ -7,5 +7,8 @@ const serieList = document.querySelector(".js-serieList");
 const favouriteSerieList = document.querySelector(".js-favouriteSerieList");
 const favouriteSection = document.querySelector(".js-aside");
 
+const btnRemove = document.querySelector(".js-btnRemove");
+
+
 let seriesResultArrow = [];
 let favouriteListArrow = [];

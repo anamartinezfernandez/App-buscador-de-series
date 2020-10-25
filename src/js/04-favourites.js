@@ -62,14 +62,14 @@ const favouriteSeries = function (event) {
   } else {
     const findFavouriteLength = favouriteListArrow + 1;
     favouriteListArrow.splice(findFavouriteLength, 0);
-    console.log(favouriteClicked.classList.remove("classFavourite")); //aquí tenemos que quitar también de la parte de favoritos si se clicka
+    console.log(favouriteClicked.classList.remove("classFavourite")); 
+    
     //Aquí lo que queremos es que si ya está en el array no se vuelva a añadir si se clicka. Por lo que usamos el método splice. El primer parámetro sería el índice a partir del cual queremos añadir elementos y el segundo el número de elementos que queremos añadir a partir de la posición dada. Para ello creamos una nueva variable (que cogeremos como primer parámetro) y que será la longitud del array +1. En el segundo parámetro le diremos que no queremos que nos añada nada más.
 
     console.log(favouriteListArrow);
   }
   
-  //paintCard();
-  //listenCard(); esto no estoy segura
+ 
   setLocalStorage();
 };
 
@@ -87,10 +87,12 @@ const paintFavourites = function () {
       favouriteSerieHtml += `<img class= "favouriteSeriesImg"alt="foto carátula ${favouriteObject.show.name}" name= "foto ${favouriteObject.show.name}" src="${favouriteObject.show.image.medium}" >`;
     }
     favouriteSerieHtml += `<h3 class = "favouriteSeriesTitle">${favouriteObject.show.name}</h3>`;
-    favouriteSerieHtml += `<button  class= "btnRemove" type="button"> X </button>`
+    favouriteSerieHtml += `<button  class= "js-btnRemove btnRemove" type="button" id= ${favouriteObject.show.id}> X </button>`
     favouriteSerieHtml += "</li>";
+   
   }
-  favouriteSerieList.innerHTML = favouriteSerieHtml;
+ favouriteSerieList.innerHTML = favouriteSerieHtml;
+  listenRemoveBtn(); 
 };
 
 

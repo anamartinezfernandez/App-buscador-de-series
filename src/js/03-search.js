@@ -3,7 +3,7 @@
 
 
 function handlerEvent() {
-  seriesResultArrow = [];  //AQUÍ QUÉ!!!!! ¿HABRÍA QUE QUITARLO?
+  seriesResultArrow = []; 
   connectToApi();
 }
 
