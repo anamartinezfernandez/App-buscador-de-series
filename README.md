@@ -2,7 +2,7 @@
   - [x] Escuchar el evento click en el botón
   - [x] Fetch obtener datos del servidor (FUNCTION CONNECTTOAPI)
   - [x] Pasear, datos,del servidor a JSON
-  - [x] Guardar las series en un array (seriesArrow)
+  - [x] Guardar las series en un array (seriesResultArrow)
   - [x] Pintar la tarjeta en el HTML (usar datos dinámicos) con una imagen y el título (FUNCTION PAINTCARD)
   - [x] Poner imagen de relleno cuando no hay imagen
 
@@ -37,7 +37,11 @@
 Flujo de trabajo:
 
 - Evento escuchador de click (al final del código): conecta con servidor API
-- Función conectar con el servidor API cuando la usuaria hace click. (coge todos los datos del servidor y los guarda en el array seriesArrow)
+- Función conectar con el servidor API cuando la usuaria hace click. (coge todos los datos del servidor y los guarda en el array seriesResultArrow)
 - La función api-->Activa la función PaintCard. 
   - Se pinta la imagen si no la hay.
 - La función api-->Activa la función ListenCard (escuchar los favoritos)
+
+
+
+
