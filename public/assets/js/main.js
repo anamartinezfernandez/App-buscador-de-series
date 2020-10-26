@@ -183,5 +183,16 @@ function getFromLocalStorage() {
 
 getFromLocalStorage();
 
+function resetLocalStorage(event) {
+  favouriteListArrow = [];
+  localStorage.clear();
+  event.preventDefault();
+
+  paintFavourites();
+  setLocalStorage();
+}
+
+btnReset.addEventListener("click", resetLocalStorage);
+
 
 //# sourceMappingURL=main.js.map
