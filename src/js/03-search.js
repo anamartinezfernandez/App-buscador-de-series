@@ -12,14 +12,11 @@ function handlerEvent() {
 
 function connectToApi() {
   const inputSearchValue = inputSearch.value;
-  console.log("entro");
   fetch(`//api.tvmaze.com/search/shows?q=${inputSearchValue}`)
     .then(function (response) {
-      console.log(response.json);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       seriesResultArrow = data; 
       paintCard();
       listenCard(); 
@@ -30,19 +27,9 @@ function connectToApi() {
 //-------------------Paint serie cards from user search in HTML  -------------------
 
 const paintCard = function () {
-  //console.log ("entro en paintcard");
   let serieHtml = "";
-  //console.log (serieHtml);
-
   for (let i = 0; i < seriesResultArrow.length; i++) {
-    //console.log (i);
-
-    //console.log(seriesResultArrow[i].show);
     const series = seriesResultArrow[i].show;
-    //console.log (series);
-    //console.log (series.name);
-    //console.log (seriesResultArrow);
-    //console.log (series.id);
     serieHtml += `<li class= "serieElement js-serieElement" id ="${series.id}">`;
 
     if (series.image === null) {
@@ -54,7 +41,6 @@ const paintCard = function () {
     serieHtml += "</li>";
   }
   serieList.innerHTML = serieHtml;
-  //console.log (serieList);
 };
 
 

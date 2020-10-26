@@ -1,23 +1,22 @@
 
-.page__main{
+ .page__main{
   display: flex;
-  justify-content: space-around;
   flex-direction: row-reverse;
+  justify-content: space-around;
+
+}
+.formContainer{
+  position: absolute;
+  transform: translate(0px, -64px);
 
 }
 
-/* .form {
-  position: absolute;
-  top: 120px;
-  left: 40px;
-
-} */
 .serieList {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 7px;
+  margin-top: 27px;
 }
 
 .serieElement {
@@ -29,30 +28,33 @@
   text-decoration: none;
   width: 240px;
   height: 390px;
-  background-color: rgb(173, 135, 173);
-  color: black;
+  background-color: rgb(126, 114, 126);
+  border-radius: 10%;
 } 
 
 .serieTitle {
   margin-top: 15px;
   text-align: center;
   height: 60px;
+  color: black;
 }
 
-
-.favouriteSerieList{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: rgb(172, 241, 235);
+.aside{
+  &__title{
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
+  &__favouriteSerieList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .favouriteSeriesTitle{
   font-size: 16px;
   margin-left: 5px;
   
-
 }
 
 .favouriteSeries{
@@ -60,13 +62,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
   text-decoration: none;
   width: 240px;
-  height: 200px;
-  background-color: rgb(78, 194, 165);
-  color: black;
+  height: 170px;
+  background-color:  rgb(164, 209, 209);
+  border-radius: 10%;
 }
 
 .favouriteSeriesImg {
@@ -80,7 +82,7 @@
 
 .classFavourite {
   background-color: rgb(164, 209, 209);
-  color: blue;
+  color: grey;
 }
 
 .btnRemove {
@@ -94,6 +96,6 @@
   justify-content: center;
  
   &:hover{
-    background-color:blue;
+    background-color: rgb(85, 110, 102);
   }
 }

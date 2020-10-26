@@ -1,3 +1,4 @@
+
 //-------------------Set serie cards marked as favourites to user local Storage-------------------
 
 function setLocalStorage() {
@@ -11,11 +12,8 @@ function getFromLocalStorage() {
   if (favouriteStorage !== null) {
     favouriteListArrow = favouriteStorage;
     favouriteSection.classList.remove("hidden");
-    //console.log(favouriteListArrow);
     paintFavourites();
   } else {
-    console.log(favouriteListArrow);
-    //favouriteSection.classList.add("hidden");
     return favouriteListArrow = [];
   } 
 }

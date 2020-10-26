@@ -5,31 +5,33 @@
 
 body {
   padding: 2rem;
-  height: 100vh; }
+  height: 100vh;
+  color: #2b2727;
+  font-family: fantasy; }
 
-.page__header {
+.header {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 80px; }
+  .header__title {
+    font-size: 30px; }
 
 .page__main {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row-reverse; }
+  flex-direction: row-reverse;
+  justify-content: space-around; }
 
-/* .form {
+.formContainer {
   position: absolute;
-  top: 120px;
-  left: 40px;
+  transform: translate(0px, -64px); }
 
-} */
 .serieList {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 7px; }
+  margin-top: 27px; }
 
 .serieElement {
   display: flex;
@@ -40,20 +42,23 @@ body {
   text-decoration: none;
   width: 240px;
   height: 390px;
-  background-color: #ad87ad;
-  color: black; }
+  background-color: #7e727e;
+  border-radius: 10%; }
 
 .serieTitle {
   margin-top: 15px;
   text-align: center;
-  height: 60px; }
+  height: 60px;
+  color: black; }
 
-.favouriteSerieList {
+.aside__title {
+  margin-left: 30px;
+  margin-bottom: 10px; }
+
+.aside__favouriteSerieList {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #acf1eb; }
+  flex-wrap: wrap; }
 
 .favouriteSeriesTitle {
   font-size: 16px;
@@ -64,13 +69,13 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
   text-decoration: none;
   width: 240px;
-  height: 200px;
-  background-color: #4ec2a5;
-  color: black; }
+  height: 170px;
+  background-color: #a4d1d1;
+  border-radius: 10%; }
 
 .favouriteSeriesImg {
   width: 100px;
@@ -81,7 +86,7 @@ body {
 
 .classFavourite {
   background-color: #a4d1d1;
-  color: blue; }
+  color: grey; }
 
 .btnRemove {
   width: 22px;
@@ -92,7 +97,7 @@ body {
   align-items: center;
   justify-content: center; }
   .btnRemove:hover {
-    background-color: blue; }
+    background-color: #556e66; }
 
 .main__list {
   padding-left: 2rem; }
