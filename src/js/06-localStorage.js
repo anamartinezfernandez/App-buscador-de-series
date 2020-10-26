@@ -11,22 +11,14 @@ function getFromLocalStorage() {
   if (favouriteStorage !== null) {
     favouriteListArrow = favouriteStorage;
     favouriteSection.classList.remove("hidden");
+    //console.log(favouriteListArrow);
     paintFavourites();
   } else {
-    favouriteSection.classList.add("hidden");
-    console.log(favouriteSection.classList.add("hidden"));
+    console.log(favouriteListArrow);
+    //favouriteSection.classList.add("hidden");
     return favouriteListArrow = [];
-    
-
-    //elemntSectionfav.classList.add('hidden'); 
-  }
+  } 
 }
 
 getFromLocalStorage();
 
-/* const resetLocalStorage = function() {
-  localStorage.clear();
-  favouriteListArrow =[];
-  avouriteSection.classList.add('hidden');
-}
-elementButtonReset.addEventListener ('click', resetLocalStorage);*/

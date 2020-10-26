@@ -1,47 +1,39 @@
-- [x] Pintar las series cuando haga click en el botón (evento)
-  - [x] Escuchar el evento click en el botón
-  - [x] Fetch obtener datos del servidor (FUNCTION CONNECTTOAPI)
-  - [x] Pasear, datos,del servidor a JSON
-  - [x] Guardar las series en un array (seriesResultArrow)
-  - [x] Pintar la tarjeta en el HTML (usar datos dinámicos) con una imagen y el título (FUNCTION PAINTCARD)
-  - [x] Poner imagen de relleno cuando no hay imagen
+**Aplicación Web de búsqueda de series de televisión:**
 
-- [x] POnerlo bonito (con clases de css se las añado)
+Esta aplicación web es una web donde el usuario/a puede buscar series, añadirlas y eliminarlas de su lista de favoritos. 
 
-- [ ] Marcar como favoritas, las seleccionada por la usuaria
-  - [x] Escuchar el evento click en cada tarjeta (FUNCTION LISTENCARD)
-  - [x] Identificar el elemento clicado (id con currentTarget)
-  - [x] Relaciónar el ID con array de favoritos
-  - [x] Guardar los favoritos en un Array (favouriteListArrow)
-  - [x] Añadir la clase de favorito (la traemos de css) para intercambiar color de fondo y fuente
-  - [x] Pintar tarjetas de favoritos: Mostrar un listado de las series favoritas.
-  - [x] Si vuelve a pinchar en la misma tarjeta no queremos que se añada al array (y por lo tanto tampoco a la lista)
-  - [ ] Con css que aparezca en la parte izquierda y hidden (clase ya creada en css)
-  - [x] Mantener las series favoritas aunque la usuaria realice otra búsqueda. ASEGURARSE DE POR QUÉ APARECE ASÍ
+Toda la información introducida por el usuario/a se almacena en local Storage, por lo que seguirá disponible aunque cierre el explorador. 
 
-- [] Localstorage: al recargar la página los favoritos deben de seguir mostrándose
-  - [x] Guardar array de favoritos en localStorage
-    - [x] Transformar array a cadena de caracteres (JSON.stringify)
-  - [x] Recuperar los datos guardados
-    - [x] Transformar cadena de caracteres a array (JSON.parse)
+Para arrancar el proyecto, se puede acceder a la demo a través del enlace de GitHub Pages: http://beta.adalab.es/modulo-2-evaluacion-final-anamartinezfernandez/ 
 
-- [] Bonus: borrar favoritos
+**Las tecnologías utilizadas** son HTML y SASS para la maquetación, JavaScript para hacer la web interactiva y GIT para el control de versiones.
 
-- [] Bonus: Afinar la maquetación
+**La estructura de la página cuenta con:**
 
-- [] Hacer README
+1- Un campo de texto y un botón para buscar series de televisión por su título. 
 
-- [] Subir a docs. 
+2- Un listado de resultados de búsqueda donde aparece el cartel de la serie y el título.
 
+3- Un listado con las series marcadas como favoritas, que se encuentra oculta hasta que se selecciona la primera favorita.
 
-Flujo de trabajo:
+**El funcionamiento de la página es el siguiente**
 
-- Evento escuchador de click (al final del código): conecta con servidor API
-- Función conectar con el servidor API cuando la usuaria hace click. (coge todos los datos del servidor y los guarda en el array seriesResultArrow)
-- La función api-->Activa la función PaintCard. 
-  - Se pinta la imagen si no la hay.
-- La función api-->Activa la función ListenCard (escuchar los favoritos)
+1- BÚSQUEDA:
 
+a- Al hacer clic sobre el botón de Buscar, la aplicación se conecta al API de TVMaze para búsqueda de series.
 
+b- Se pinta una tarjeta con imagen de la serie y el título, por cada uno de los resultados de la búsqueda.
 
+c- Algunas de las series que devuelve el API no tienen imagen. En ese caso se muestra una imagen de relleno.
 
+2- FAVORITOS:
+
+a- Una vez aparecen los resultados de búsqueda, la usuaria puede indicar cuáles son sus series favoritas.
+
+b- Para ello debe hacer clic sobre la serie que quiere marcar. Cuando sucede este evento:
+  - El color de fondo y el de fuente se intercambian, indicando que es una serie favorita.
+  - Se muestra un listado con
+  las series marcadas como favoritas.
+  - Las series favoritas siguen apareciendo aunque la usuaria realice otra búsqueda o recargue la página.
+
+c- Al hacer clic sobre el icono de una 'x' al lado de cada favorito, se borra el favorito clicado de la lista y del localStorage.

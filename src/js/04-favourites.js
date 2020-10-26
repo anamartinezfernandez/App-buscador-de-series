@@ -10,19 +10,6 @@ const listenCard = function () {
   }
 }
 
-//-------------------Relate the ID of serie card marked as favourite with favourite arrow-------------------
-
-const getObject = function (id) {
-  console.log("entro en getobject");
-  console.log(seriesResultArrow);
-  console.log(favouriteListArrow);
-  console.log (seriesResultArrow.find(
-    (serieArrow) => serieArrow.show.id === parseInt(id)
-  ));
-  return seriesResultArrow.find(
-    serieArrow => serieArrow.show.id === parseInt(id)
-  );
-};
 
 
 //-------------------Saves as favourite serie cards clicked by user-------------------
@@ -38,31 +25,40 @@ const favouriteSeries = function (event) {
   console.log(favouriteClicked);
   const favouriteClickedId = parseInt(event.currentTarget.id); 
   console.log(favouriteClickedId);
-  const object = getObject(favouriteClickedId);
-  console.log(object);
 
+  console.log(seriesResultArrow);
+  const object = seriesResultArrow.find(
+    function (favouriteElement) {return favouriteElement.show.id === favouriteClickedId});
+  console.log(object); 
 
   //-------------------Saves as favourite into the favourite List array serie cards clicked by user -------------------
   console.log(favouriteListArrow);
-  const findFavourite = favouriteListArrow.indexOf(object); 
+  
+
+  const findFavourite = favouriteListArrow.findIndex (function (favouriteIndex) {return favouriteIndex.show.id === favouriteClickedId});
+  console.log(object);
+  // findIndex >>> id 123 === 123
   console.log(findFavourite);
 
+  //aquí utilizo findIndex en vez de indexOf para que al recargar la página compare los objetos como iguales //const findFavourite = favouriteListArrow.indexOf(object); 
 
   //esto significa que no está dentro del array
   if (findFavourite === -1) {
-    favouriteSection.classList.remove("hidden");
+    
     favouriteListArrow.push(object); 
     console.log(object);
     console.log(favouriteListArrow);
     console.log(favouriteClicked);
     console.log(favouriteClicked.classList.add("classFavourite"));
     paintFavourites();
-
     
   } else {
     const findFavouriteLength = favouriteListArrow + 1;
     favouriteListArrow.splice(findFavouriteLength, 0);
-    console.log(favouriteClicked.classList.remove("classFavourite")); 
+  
+    alert ("This series is already in your favourite list"); 
+    /* removeFavourites(); */
+   
     
     //Aquí lo que queremos es que si ya está en el array no se vuelva a añadir si se clicka. Por lo que usamos el método splice. El primer parámetro sería el índice a partir del cual queremos añadir elementos y el segundo el número de elementos que queremos añadir a partir de la posición dada. Para ello creamos una nueva variable (que cogeremos como primer parámetro) y que será la longitud del array +1. En el segundo parámetro le diremos que no queremos que nos añada nada más.
 
@@ -76,6 +72,7 @@ const favouriteSeries = function (event) {
 //-------------------Paint serie cards marked as favourite  in favouriste section of HTML  -------------------
 
 const paintFavourites = function () {
+  console.log("entro en paintfav");
   let favouriteSerieHtml = "";
   for (const favouriteObject of favouriteListArrow) {
     console.log (favouriteListArrow);
@@ -92,8 +89,23 @@ const paintFavourites = function () {
    
   }
  favouriteSerieList.innerHTML = favouriteSerieHtml;
-  listenRemoveBtn(); 
+ console.log(favouriteSerieList);
+ listenRemoveBtn(); 
 };
+
+/* const removeFavourites = function () {
+  console.log("entro en removefav");
+  let favouriteSerieHtml = "";
+  favouriteSerieList.innerHTML = favouriteSerieHtml;
+  console.log(favouriteSerieList);
+  console.log (favouriteListArrow);
+  
+
+  console.log (favouriteListArrow);
+
+};
+ */
+
 
 
 

@@ -33,8 +33,7 @@ const removeFavouriteSeries = function(event){
       console.log(favouriteListArrow);
     }
   }
-  setLocalStorage();
+  setLocalStorage(); 
   paintFavourites();
 }
 
-/* PENDIENTE ELIMINAR LA SECCIÓN DE FAVORITOS AL COMPLETO   */

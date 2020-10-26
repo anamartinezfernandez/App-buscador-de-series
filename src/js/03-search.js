@@ -13,7 +13,7 @@ function handlerEvent() {
 function connectToApi() {
   const inputSearchValue = inputSearch.value;
   console.log("entro");
-  fetch(`http://api.tvmaze.com/search/shows?q=${inputSearchValue}`)
+  fetch(`//api.tvmaze.com/search/shows?q=${inputSearchValue}`)
     .then(function (response) {
       console.log(response.json);
       return response.json();
