@@ -11,6 +11,7 @@ const btnRemove = document.querySelector(".js-btnRemove");
 
 const btnReset = document.querySelector(".js-reset");
 
+const btnLog= document.querySelector (".js-logBtn");
 
 let seriesResultArrow = [];
 let favouriteListArrow = [];
@@ -61,6 +62,7 @@ const paintCard = function () {
       serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="${series.image.medium}" >`;
     }
     serieHtml += `<h3 class= "serieTitle">${series.name}</h3>`;
+    serieHtml += `<p> ${series.status}`;
     serieHtml += "</li>";
   }
   serieList.innerHTML = serieHtml;
@@ -87,7 +89,10 @@ const favouriteSeries = function (event) {
 
  //-------------------Identify clicked element-------------------
   const favouriteClicked = event.currentTarget;
-  const favouriteClickedId = parseInt(event.currentTarget.id); 
+  console.log(favouriteClicked);
+  const favouriteClickedId = parseInt(event.currentTarget.id);
+  console.log(favouriteClickedId);
+  console.log(seriesResultArrow);
   const object = seriesResultArrow.find(
   function (favouriteElement) {return favouriteElement.show.id === favouriteClickedId});
 
@@ -101,7 +106,7 @@ const favouriteSeries = function (event) {
     paintFavourites();
     } 
     else {
-      const findFavouriteLength = favouriteListArrow + 1;
+      const findFavouriteLength = favouriteListArrow.length + 1;
       favouriteListArrow.splice(findFavouriteLength, 0);
       alert ("This series is already in your favourite list"); 
      }
@@ -109,7 +114,7 @@ const favouriteSeries = function (event) {
 };
 
 
-//-------------------Paint serie cards marked as favourite  in favouriste section of HTML  -------------------
+//-------------------Paint serie cards marked as favourite  in favourite section of HTML  -------------------
 
 const paintFavourites = function () {
   let favouriteSerieHtml = "";
@@ -128,8 +133,20 @@ const paintFavourites = function () {
   
  favouriteSerieList.innerHTML = favouriteSerieHtml;
  listenRemoveBtn(); 
+ listenFavourites();
 }
 
+const listenFavourites = function(){
+  console.log("entro en función ListenFavourites");
+  btnLog.addEventListener ("click", showFavourites);
+}
+
+const showFavourites = function(){
+  console.log(favouriteListArrow);
+  for (const favourite of favouriteListArrow){
+   console.log(favourite.show.name);
+  }
+}
 
 
 //-------------------Listener of remove buttons when are clicked-------------------

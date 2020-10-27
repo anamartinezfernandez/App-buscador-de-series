@@ -38,6 +38,7 @@ const paintCard = function () {
       serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="${series.image.medium}" >`;
     }
     serieHtml += `<h3 class= "serieTitle">${series.name}</h3>`;
+    serieHtml += `<p> ${series.status}`;
     serieHtml += "</li>";
   }
   serieList.innerHTML = serieHtml;

@@ -11,6 +11,7 @@ const btnRemove = document.querySelector(".js-btnRemove");
 
 const btnReset = document.querySelector(".js-reset");
 
+const btnLog= document.querySelector (".js-logBtn");
 
 let seriesResultArrow = [];
 let favouriteListArrow = [];
