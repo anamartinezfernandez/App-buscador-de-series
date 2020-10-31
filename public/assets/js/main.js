@@ -1,11 +1,12 @@
 "use strict";
 
+const body = document.querySelector(".js-body");
 const btnSearch = document.querySelector(".js-searchBtn");
 const form = document.querySelector(".js-form");
 const inputSearch = document.querySelector(".js-searchInput");
 const serieList = document.querySelector(".js-serieList");
 const favouriteSerieList = document.querySelector(".js-favouriteSerieList");
-const favouriteSection = document.querySelector(".js-aside");
+const favouriteSection = document.querySelector(".js-section");
 
 const btnRemove = document.querySelector(".js-btnRemove");
 
@@ -16,18 +17,16 @@ const btnLog= document.querySelector (".js-logBtn");
 let seriesResultArrow = [];
 let favouriteListArrow = [];
 
-//-------------------Prevent Default: prevent form from being submitted-------------------
-
-function handlerForm(event) {
-  event.preventDefault();
-}
-form.addEventListener("submit", handlerForm);
 
 //-------------------Activate connecttoAPI function when btnSearch is clicked -------------------
 
 
-function handlerEvent() {
+function handlerEvent(event) {
+  event.preventDefault();
   seriesResultArrow = []; 
+  body.classList.remove ("full_screen");
+  body.classList.add("changeBackground");
+  hideFavSection();
   connectToApi();
 }
 
@@ -44,7 +43,7 @@ function connectToApi() {
       seriesResultArrow = data; 
       paintCard();
       listenCard(); 
-    });
+      });
 }
 
 
@@ -62,16 +61,17 @@ const paintCard = function () {
       serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="${series.image.medium}" >`;
     }
     serieHtml += `<h3 class= "serieTitle">${series.name}</h3>`;
-    serieHtml += `<p> ${series.status}`;
     serieHtml += "</li>";
+    serieList.innerHTML = serieHtml;
   }
-  serieList.innerHTML = serieHtml;
 };
 
 
 //-------------------Listener of btnSearch when is clicked-------------------
 
 btnSearch.addEventListener("click", handlerEvent);
+
+
 //-------------------Listener of serie cards when are clicked-------------------
 
 const listenCard = function () {
@@ -108,8 +108,10 @@ const favouriteSeries = function (event) {
     else {
       const findFavouriteLength = favouriteListArrow.length + 1;
       favouriteListArrow.splice(findFavouriteLength, 0);
+      favouriteClicked.classList.remove("classFavourite");
       alert ("This series is already in your favourite list"); 
      }
+    
   setLocalStorage();
 };
 
@@ -117,6 +119,7 @@ const favouriteSeries = function (event) {
 //-------------------Paint serie cards marked as favourite  in favourite section of HTML  -------------------
 
 const paintFavourites = function () {
+  favouriteSection.classList.remove ("hidden");
   let favouriteSerieHtml = "";
   for (const favouriteObject of favouriteListArrow) {
     
@@ -133,18 +136,15 @@ const paintFavourites = function () {
   
  favouriteSerieList.innerHTML = favouriteSerieHtml;
  listenRemoveBtn(); 
- listenFavourites();
 }
 
-const listenFavourites = function(){
-  console.log("entro en función ListenFavourites");
-  btnLog.addEventListener ("click", showFavourites);
-}
 
-const showFavourites = function(){
-  console.log(favouriteListArrow);
-  for (const favourite of favouriteListArrow){
-   console.log(favourite.show.name);
+
+ function hideFavSection(){
+  console.log("entro en hidefav");
+  console.log (favouriteListArrow);
+  if (favouriteListArrow.length === 0){
+    favouriteSection.classList.add("hidden");
   }
 }
 
@@ -153,8 +153,9 @@ const showFavourites = function(){
 
 
 const listenRemoveBtn = function(){
+  console.log("enetro en listenremove");
   const btnsRemove = document.querySelectorAll(".js-btnRemove");
-  for (let btnRemove of btnsRemove) {
+  for (const btnRemove of btnsRemove) {
     btnRemove.addEventListener ("click", removeFavouriteSeries);
   }
 }
@@ -162,22 +163,27 @@ const listenRemoveBtn = function(){
 
 //-------------------Remove as favourite serie cards which X button is clicked by user-------------------
 
-
-
 const removeFavouriteSeries = function(event){
-
-  const btnClickedId = parseInt (event.currentTarget.id);
-  for (const favouriteArrow of favouriteListArrow){
+  console.log("entro en remove");
   
-    if (btnClickedId === parseInt(favouriteArrow.show.id)){
-      favouriteListArrow.splice(0,1);
-    }
+  const btnClickedId = parseInt (event.currentTarget.id);
+  console.log(btnClickedId);
+
+  const findFavourite = favouriteListArrow.findIndex (function (favouriteIndex) {return favouriteIndex.show.id === btnClickedId});
+  if (findFavourite !== -1){
+    console.log("entrrrr");
+    favouriteListArrow.splice(findFavourite,1);
+    console.log(favouriteListArrow);
   }
+
   setLocalStorage(); 
   paintFavourites();
-}
+  if (favouriteListArrow.length === 0){
+    console.log("entro aquí");
+    favouriteSection.classList.add("hidden");
+  }
 
-
+} 
 
 //-------------------Set serie cards marked as favourites to user local Storage-------------------
 
@@ -191,25 +197,30 @@ function getFromLocalStorage() {
   const favouriteStorage = JSON.parse(localStorage.getItem("favourites"));
   if (favouriteStorage !== null) {
     favouriteListArrow = favouriteStorage;
-    favouriteSection.classList.remove("hidden");
     paintFavourites();
   } else {
     return favouriteListArrow = [];
   } 
+  hideFavSection();
 }
 
 getFromLocalStorage();
 
 function resetLocalStorage(event) {
+  console.log("entro en reset");
   favouriteListArrow = [];
   localStorage.clear();
   event.preventDefault();
-
-  paintFavourites();
+  paintFavourites(); 
+  favouriteSection.classList.add("hidden");
   setLocalStorage();
 }
 
 btnReset.addEventListener("click", resetLocalStorage);
 
+//PENDIENTE DE MEJORAS
 
+//Cuando voy añadiendo favoritos, la lista de series se me va haciendo más pequeña.
+//Que el color de la tarjeta vaya acorde con las funciones
+//Que cuando hago click de nuevo en la tarjeta se me elimine de los favoritos
 //# sourceMappingURL=main.js.map

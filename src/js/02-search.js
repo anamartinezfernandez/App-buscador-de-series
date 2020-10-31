@@ -2,8 +2,12 @@
 //-------------------Activate connecttoAPI function when btnSearch is clicked -------------------
 
 
-function handlerEvent() {
+function handlerEvent(event) {
+  event.preventDefault();
   seriesResultArrow = []; 
+  body.classList.remove ("full_screen");
+  body.classList.add("changeBackground");
+  hideFavSection();
   connectToApi();
 }
 
@@ -20,7 +24,7 @@ function connectToApi() {
       seriesResultArrow = data; 
       paintCard();
       listenCard(); 
-    });
+      });
 }
 
 
@@ -38,13 +42,13 @@ const paintCard = function () {
       serieHtml += `<img alt="foto carátula ${series.name}" name= "foto ${series.name}" src="${series.image.medium}" >`;
     }
     serieHtml += `<h3 class= "serieTitle">${series.name}</h3>`;
-    serieHtml += `<p> ${series.status}`;
     serieHtml += "</li>";
+    serieList.innerHTML = serieHtml;
   }
-  serieList.innerHTML = serieHtml;
 };
 
 
 //-------------------Listener of btnSearch when is clicked-------------------
 
 btnSearch.addEventListener("click", handlerEvent);
+

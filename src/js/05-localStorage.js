@@ -11,23 +11,29 @@ function getFromLocalStorage() {
   const favouriteStorage = JSON.parse(localStorage.getItem("favourites"));
   if (favouriteStorage !== null) {
     favouriteListArrow = favouriteStorage;
-    favouriteSection.classList.remove("hidden");
     paintFavourites();
   } else {
     return favouriteListArrow = [];
   } 
+  hideFavSection();
 }
 
 getFromLocalStorage();
 
 function resetLocalStorage(event) {
+  console.log("entro en reset");
   favouriteListArrow = [];
   localStorage.clear();
   event.preventDefault();
-
-  paintFavourites();
+  paintFavourites(); 
+  favouriteSection.classList.add("hidden");
   setLocalStorage();
 }
 
 btnReset.addEventListener("click", resetLocalStorage);
 
+//PENDIENTE DE MEJORAS
+
+//Cuando voy añadiendo favoritos, la lista de series se me va haciendo más pequeña.
+//Que el color de la tarjeta vaya acorde con las funciones
+//Que cuando hago click de nuevo en la tarjeta se me elimine de los favoritos

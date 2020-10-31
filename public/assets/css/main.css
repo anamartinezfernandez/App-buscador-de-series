@@ -6,17 +6,24 @@
 body {
   padding: 2rem;
   height: 100vh;
-  background-color: #e6e0e6;
   color: #2b2727;
   font-family: fantasy; }
 
 .header {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 80px; }
   .header__title {
-    font-size: 40px;
+    font-size: 70px;
+    color: #5a485a; }
+  .header__subtitle {
+    font-size: 20px;
+    color: #9b829b;
+    text-transform: uppercase; }
+  .header__line--left {
+    color: #5a485a; }
+  .header__line--right {
     color: #5a485a; }
 
 .page__main {
@@ -44,7 +51,7 @@ body {
   text-decoration: none;
   width: 240px;
   height: 390px;
-  background-color: #7e727e;
+  background-color: #a4d1d1;
   border-radius: 10%; }
 
 .serieTitle {
@@ -61,13 +68,13 @@ body {
   padding: 10px;
   border-radius: 10%; }
 
-.aside {
+.section {
   flex-wrap: wrap; }
-  .aside__title {
+  .section__title {
     margin-left: 30px;
     margin-bottom: 10px;
     color: #5a485a; }
-  .aside__favouriteSerieList {
+  .section__favouriteSerieList {
     display: flex;
     flex-direction: row; }
 
@@ -85,7 +92,7 @@ body {
   text-decoration: none;
   width: 240px;
   height: 170px;
-  background-color: #a4d1d1;
+  background-color: #7e727e;
   border-radius: 10%; }
 
 .reset {
@@ -102,7 +109,7 @@ body {
   display: none; }
 
 .classFavourite {
-  background-color: #a4d1d1;
+  background-color: #7e727e;
   color: grey; }
 
 .btnRemove {
@@ -115,6 +122,20 @@ body {
   justify-content: center; }
   .btnRemove:hover {
     background-color: #556e66; }
+
+.full_screen {
+  height: 100vh;
+  background: url(../images/dreamworks4.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  transition: ease 0.2s;
+  padding: 0; }
+
+.changeBackground {
+  height: 100vh;
+  transition: ease 0.2s;
+  background-color: #e6e0e6; }
 
 .main__list {
   padding-left: 2rem; }

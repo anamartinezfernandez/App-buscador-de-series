@@ -34,8 +34,10 @@ const favouriteSeries = function (event) {
     else {
       const findFavouriteLength = favouriteListArrow.length + 1;
       favouriteListArrow.splice(findFavouriteLength, 0);
+      favouriteClicked.classList.remove("classFavourite");
       alert ("This series is already in your favourite list"); 
      }
+    
   setLocalStorage();
 };
 
@@ -43,6 +45,7 @@ const favouriteSeries = function (event) {
 //-------------------Paint serie cards marked as favourite  in favourite section of HTML  -------------------
 
 const paintFavourites = function () {
+  favouriteSection.classList.remove ("hidden");
   let favouriteSerieHtml = "";
   for (const favouriteObject of favouriteListArrow) {
     
@@ -59,18 +62,6 @@ const paintFavourites = function () {
   
  favouriteSerieList.innerHTML = favouriteSerieHtml;
  listenRemoveBtn(); 
- listenFavourites();
 }
 
-const listenFavourites = function(){
-  console.log("entro en función ListenFavourites");
-  btnLog.addEventListener ("click", showFavourites);
-}
-
-const showFavourites = function(){
-  console.log(favouriteListArrow);
-  for (const favourite of favouriteListArrow){
-   console.log(favourite.show.name);
-  }
-}
 
