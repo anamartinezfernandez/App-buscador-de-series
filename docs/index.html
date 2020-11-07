@@ -8,13 +8,17 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
-  <body>
+  <body class="js-body full_screen">
     <header class="header">
-      <h1 class= header__title>Buscador de series</h1>
+      <h1 class= "header__title">DreamSeries</h1>
+      <h2 class= "header__subtitle">
+        <!-- <hr class= "header__line--left" width=150> -->Searcher
+        <!-- <hr class= "header__line--right" width=150> -->
+      </h2>
     </header>
 
     <main class="page__main">
-      <section class="formContainer">
+      <section class="formContainer ">
         <form class= "js-form form">
           <label for="searchInput"></label>
           <input class="js-searchInput form__search--input" type="text" id="searchInput" value="" placeholder="La casa de papel"/>
@@ -25,12 +29,12 @@
         <ul class="serieList js-serieList" >
         </ul>
       </section>
-      <aside class= "js-aside aside">
-        <h2 class="aside__title">Mis series favoritas</h2>
+      <section class= "js-section section hidden">
+        <h2 class="section__title">Mis series favoritas</h2>
         <button class="reset js-reset" type="reset">Eliminar favoritos</button>
-        <ul class="aside__favouriteSerieList js-favouriteSerieList"></ul>
+        <ul class="section__favouriteSerieList js-favouriteSerieList"></ul>
         
-      </aside>
+      </section>
     </main>
 
     <script src="./assets/js/main.js" type="text/javascript"></script>
