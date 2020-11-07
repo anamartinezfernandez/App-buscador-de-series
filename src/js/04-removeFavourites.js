@@ -1,10 +1,10 @@
- function hideFavSection(){
+function hideFavSection(){
   console.log("entro en hidefav");
   console.log (favouriteListArrow);
   if (favouriteListArrow.length === 0){
     favouriteSection.classList.add("hidden");
   }
-}
+} 
 
 
 //-------------------Listener of remove buttons when are clicked-------------------

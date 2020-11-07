@@ -76,7 +76,8 @@ body {
     color: #5a485a; }
   .section__favouriteSerieList {
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    flex-wrap: wrap; }
 
 .favouriteSeriesTitle {
   font-size: 16px;

@@ -34,6 +34,6 @@ btnReset.addEventListener("click", resetLocalStorage);
 
 //PENDIENTE DE MEJORAS
 
-//Cuando voy añadiendo favoritos, la lista de series se me va haciendo más pequeña.
+
 //Que el color de la tarjeta vaya acorde con las funciones
 //Que cuando hago click de nuevo en la tarjeta se me elimine de los favoritos

@@ -34,10 +34,10 @@ const favouriteSeries = function (event) {
     else {
       const findFavouriteLength = favouriteListArrow.length + 1;
       favouriteListArrow.splice(findFavouriteLength, 0);
-      favouriteClicked.classList.remove("classFavourite");
+
       alert ("This series is already in your favourite list"); 
      }
-    
+  
   setLocalStorage();
 };
 

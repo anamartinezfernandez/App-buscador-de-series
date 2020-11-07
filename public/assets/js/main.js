@@ -108,10 +108,10 @@ const favouriteSeries = function (event) {
     else {
       const findFavouriteLength = favouriteListArrow.length + 1;
       favouriteListArrow.splice(findFavouriteLength, 0);
-      favouriteClicked.classList.remove("classFavourite");
+
       alert ("This series is already in your favourite list"); 
      }
-    
+  
   setLocalStorage();
 };
 
@@ -140,13 +140,13 @@ const paintFavourites = function () {
 
 
 
- function hideFavSection(){
+function hideFavSection(){
   console.log("entro en hidefav");
   console.log (favouriteListArrow);
   if (favouriteListArrow.length === 0){
     favouriteSection.classList.add("hidden");
   }
-}
+} 
 
 
 //-------------------Listener of remove buttons when are clicked-------------------
@@ -220,7 +220,7 @@ btnReset.addEventListener("click", resetLocalStorage);
 
 //PENDIENTE DE MEJORAS
 
-//Cuando voy añadiendo favoritos, la lista de series se me va haciendo más pequeña.
+
 //Que el color de la tarjeta vaya acorde con las funciones
 //Que cuando hago click de nuevo en la tarjeta se me elimine de los favoritos
 //# sourceMappingURL=main.js.map
